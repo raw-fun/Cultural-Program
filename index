@@ -1,0 +1,135 @@
+import React, { useState } from 'react';
+import { GraduationCap, Music, MapPin, Mail } from 'lucide-react';
+
+const RegistrationForm = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleIframeLoad = () => {
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50 font-siliguri relative">
+      
+      {/* Background Decorative Elements (Fixed Position) */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+        <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 skew-y-[-3deg] transform origin-top-left shadow-2xl"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
+        <div className="absolute top-40 left-20 w-40 h-40 bg-blue-400 opacity-10 rounded-full blur-2xl"></div>
+      </div>
+
+      {/* Font Import */}
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+          .font-siliguri {
+            font-family: 'Hind Siliguri', sans-serif;
+          }
+          .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1e40af;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+          }
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
+
+      <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 flex flex-col items-center">
+        
+        {/* Header Section */}
+        <div className="text-center text-white mb-10 max-w-4xl">
+          <div className="flex justify-center mb-4">
+            <div className="bg-white/10 p-4 rounded-full backdrop-blur-sm border border-white/20 shadow-lg">
+              <GraduationCap className="w-10 h-10 md:w-12 md:h-12 text-yellow-300" />
+            </div>
+          </div>
+          
+          <h2 className="text-blue-200 font-semibold tracking-widest uppercase text-sm md:text-base mb-2">স্বাগতম</h2>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-md">
+            ফারইস্ট ইন্টারন্যাশনাল ইউনিভার্সিটি
+          </h1>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-blue-100">
+             <div className="flex items-center gap-2 bg-blue-800/50 px-4 py-1 rounded-full border border-blue-700/50 backdrop-blur-md">
+                <Music size={18} className="text-pink-400" />
+                <span className="font-semibold text-lg">সাংস্কৃতিক অনুষ্ঠান ২০২৫</span>
+             </div>
+             <div className="hidden md:block text-blue-400">•</div>
+             <p className="opacity-90">আপনার প্রতিভা বিকাশের এক অনন্য আয়োজন</p>
+          </div>
+        </div>
+
+        {/* Main Card Container */}
+        <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 relative">
+          
+          {/* Card Top Decoration */}
+          <div className="h-2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500"></div>
+
+          {/* Loading State Overlay */}
+          {isLoading && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-20 h-[500px]">
+              <div className="loader mb-4"></div>
+              <p className="text-gray-500 font-medium animate-pulse">ফর্ম লোড হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</p>
+            </div>
+          )}
+
+          {/* Google Form Iframe - Seamlessly Attached */}
+          <div className="relative w-full bg-white">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLScqY8VZxQ5USEL42PVFVpHyv6irMq6D9ghqMCSt8e8Zwejktw/viewform?embedded=true" 
+              width="100%" 
+              height="2800" 
+              frameBorder="0" 
+              marginHeight="0" 
+              marginWidth="0"
+              scrolling="no" 
+              className="w-full md:px-0 block"
+              title="Cultural Program Registration Form"
+              onLoad={handleIframeLoad}
+            >
+              Loading…
+            </iframe>
+          </div>
+        </div>
+
+        {/* Footer Section */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl text-gray-600">
+            <a 
+              href="https://maps.app.goo.gl/paidzyx6zX39pEnG6" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md hover:border-blue-200 transition group cursor-pointer"
+            >
+                <div className="bg-blue-50 p-3 rounded-full mb-3 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition">
+                    <MapPin size={24} />
+                </div>
+                <h3 className="font-bold text-gray-800 mb-1 group-hover:text-blue-600 transition">ঠিকানা</h3>
+                <p className="text-sm">ফারইস্ট ইন্টারন্যাশনাল ইউনিভার্সিটি ক্যাম্পাস</p>
+            </a>
+
+            <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                <div className="bg-blue-50 p-3 rounded-full mb-3 text-blue-600">
+                    <Mail size={24} />
+                </div>
+                <h3 className="font-bold text-gray-800 mb-1">যোগাযোগ</h3>
+                <p className="text-sm">info@fiu.ac.bd</p>
+            </div>
+        </div>
+
+        <div className="mt-8 text-center text-gray-400 text-sm pb-4">
+          <p>© ২০২৫ ফারইস্ট ইন্টারন্যাশনাল ইউনিভার্সিটি | সর্বস্বত্ব সংরক্ষিত</p>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default RegistrationForm;
+
+
